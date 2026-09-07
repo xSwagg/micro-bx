@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #764ba2;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+.mensaje {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.exito {
+    background: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.nav button {
+    background: white;
+    color: #667eea;
+    margin: 0;
+}
+
+.seccion {
+    display: none;
+}
+
+.seccion.activo {
+    display: block;
+}
+
+hr {
+    margin: 15px 0;
+    border-color: #eee;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px;
+    }
+    .container {
+        max-width: 100%;
+    }
+    .card {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+    .nav {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .nav button {
+        flex: 1;
+        min-width: 80px;
+        font-size: 14px;
+        padding: 10px;
+    }
+    input, select, button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .nav button {
+        font-size: 12px;
+        padding: 8px;
+        min-width: 70px;
+    }
+    input, select, button {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
