@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Entorno / secretos
+.env
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# Cache de pruebas
+.pytest_cache/

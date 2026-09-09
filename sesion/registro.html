@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 560px; padding-top: 45px; padding-bottom: 60px;">
+        <div class="info-card">
+            <h3>Crear cuenta</h3>
+            <div id="alertaRegistro" class="alerta"></div>
+            <form id="formRegistro">
+                <div class="form-group">
+                    <label for="nombre">Nombres *</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellidos</label>
+                    <input type="text" id="apellido">
+                </div>
+                <div class="form-group">
+                    <label for="cedula">Cédula *</label>
+                    <input type="text" id="cedula" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo electrónico *</label>
+                    <input type="email" id="correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña *</label>
+                    <input type="password" id="contrasena" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;">Registrarme</button>
+            </form>
+            <p style="margin-top: 14px; text-align: center;">
+                ¿Ya tienes cuenta? <a href="../sesion/iniciarSesion.html" style="color: #0d5fa8;">Inicia sesión</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../sesion/registro.js"></script>
+</body>
+</html>

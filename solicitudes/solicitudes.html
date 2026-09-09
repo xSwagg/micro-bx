@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px; padding-bottom: 50px;">
+        <h2 class="centrado">Solicitudes de crédito</h2>
+
+        <div style="display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 18px;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <label for="filtroEstado" style="font-weight: bold;">Estado:</label>
+                <select id="filtroEstado" style="padding: 7px; border: 1px solid #ccd3da; border-radius: 6px;">
+                    <option value="todas">Todas</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en_revision">En revisión</option>
+                    <option value="aprobado">Aprobado</option>
+                    <option value="rechazado">Rechazado</option>
+                </select>
+                <button class="btn" id="btnFiltrar">Filtrar</button>
+            </div>
+            <button class="btn btn-verde" id="btnNuevaSolicitud">+ Nueva solicitud</button>
+        </div>
+
+        <div id="alertaSolicitudes" class="alerta"></div>
+
+        <div id="listaSolicitudes" class="sin-datos">Cargando...</div>
+    </div>
+
+    <!-- Modal: nueva solicitud -->
+    <div class="modal" id="modalNueva">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalNueva')">&times;</button>
+            <h3>Nueva solicitud de crédito</h3>
+            <form id="formNueva">
+                <div class="form-group">
+                    <label for="nuevoMonto">Monto solicitado (COP) *</label>
+                    <input type="number" id="nuevoMonto" min="1" required placeholder="Ej: 5000000">
+                </div>
+                <div id="alertaNueva" class="alerta"></div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;">Crear solicitud</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: detalle -->
+    <div class="modal" id="modalDetalle">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalDetalle')">&times;</button>
+            <div id="contenidoDetalle"></div>
+        </div>
+    </div>
+
+    <!-- Modal: aprobar -->
+    <div class="modal" id="modalAprobar">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalAprobar')">&times;</button>
+            <h3>Aprobar solicitud</h3>
+            <form id="formAprobar">
+                <input type="hidden" id="solicitudAprobarId">
+                <div class="form-group">
+                    <label for="apMonto">Monto aprobado (COP) *</label>
+                    <input type="number" id="apMonto" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="apTasa">Tasa de interés (%)</label>
+                    <input type="number" id="apTasa" step="0.01" value="2.50">
+                </div>
+                <div class="form-group">
+                    <label for="apPlazo">Plazo (cuotas)</label>
+                    <input type="number" id="apPlazo" value="12" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="apBanco">Entidad bancaria</label>
+                    <select id="apBanco"></select>
+                </div>
+                <div id="alertaAprobar" class="alerta"></div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;">Aprobar y crear crédito</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../solicitudes/solicitudes.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créditos - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px; padding-bottom: 50px;">
+        <h2 class="centrado">Créditos otorgados</h2>
+        <div id="alertaCreditos" class="alerta"></div>
+        <div id="listaCreditos" class="sin-datos">Cargando...</div>
+    </div>
+
+    <!-- Modal: detalle de crédito -->
+    <div class="modal" id="modalDetalle">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalDetalle')">&times;</button>
+            <div id="contenidoDetalle"></div>
+        </div>
+    </div>
+
+    <!-- Modal: registrar pago -->
+    <div class="modal" id="modalPago">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalPago')">&times;</button>
+            <h3>Registrar pago</h3>
+            <p style="margin-bottom: 10px; color: #555;" id="pagoInfo"></p>
+            <form id="formPago">
+                <div class="form-group">
+                    <label for="pagoMonto">Monto a pagar (COP) *</label>
+                    <input type="number" id="pagoMonto" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="pagoMetodo">Método de pago</label>
+                    <select id="pagoMetodo">
+                        <option value="1">PSE</option>
+                        <option value="2">Nequi</option>
+                        <option value="3">Daviplata</option>
+                        <option value="4">Transferencia bancaria</option>
+                        <option value="5">Efectivo</option>
+                    </select>
+                </div>
+                <div id="alertaPago" class="alerta"></div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;">Registrar pago</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../creditos/creditos.js"></script>
+</body>
+</html>

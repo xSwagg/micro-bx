@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entidades bancarias - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px; padding-bottom: 50px;">
+        <h2 class="centrado">Entidades bancarias aliadas</h2>
+
+        <div id="panelAdmin" style="display: none; margin-bottom: 16px;">
+            <button class="btn btn-verde" onclick="abrirNuevoBanco()">+ Nueva entidad</button>
+        </div>
+
+        <div id="alertaBancos" class="alerta"></div>
+        <div id="listaBancos" class="sin-datos">Cargando...</div>
+    </div>
+
+    <!-- Modal: crear / editar banco -->
+    <div class="modal" id="modalBanco">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalBanco')">&times;</button>
+            <h3 id="tituloBanco">Nueva entidad</h3>
+            <form id="formBanco">
+                <input type="hidden" id="bancoId">
+                <div class="form-group">
+                    <label for="bancoNombre">Nombre *</label>
+                    <input type="text" id="bancoNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="bancoRespuesta">Respuesta</label>
+                    <select id="bancoRespuesta">
+                        <option value="pendiente">Pendiente</option>
+                        <option value="aprobado">Aprobado</option>
+                        <option value="rechazado">Rechazado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bancoObs">Observaciones</label>
+                    <textarea id="bancoObs" rows="3"></textarea>
+                </div>
+                <div id="alertaBancoModal" class="alerta"></div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;" id="btnGuardarBanco">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../bancos/bancos.js"></script>
+</body>
+</html>
