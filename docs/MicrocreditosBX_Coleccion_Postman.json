@@ -1,0 +1,338 @@
+{
+  "info": {
+    "name": "MicrocreditosBX",
+    "description": "API de MicrocreditosBX: autenticación, solicitudes, créditos, pagos, entidades bancarias, notificaciones, prueba virtual y administración. Base: http://127.0.0.1:8080",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "microcreditosbx-col",
+    "version": "2.0.0"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8080" },
+    { "key": "credenciales", "value": "{\"correo\":\"carlos.martinez@email.com\",\"contrasena\":\"123456\"}" },
+    { "key": "correoCliente", "value": "maria.lopez@email.com" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Registrar usuario",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/registro", "host": ["{{baseUrl}}"], "path": ["api", "registro"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nombre\": \"Laura\",\n    \"apellido\": \"Torres\",\n    \"cedula\": \"1032500001\",\n    \"correo\": \"laura.torres@email.com\",\n    \"contrasena\": \"123456\",\n    \"telefono\": \"3001234567\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Iniciar sesión",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/login", "host": ["{{baseUrl}}"], "path": ["api", "login"] },
+            "body": { "mode": "raw", "raw": "{{credenciales}}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Perfil",
+      "item": [
+        {
+          "name": "Ver perfil completo (id 1)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/perfil/1", "host": ["{{baseUrl}}"], "path": ["api", "perfil", "1"] }
+          }
+        },
+        {
+          "name": "Actualizar perfil",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/perfil/1", "host": ["{{baseUrl}}"], "path": ["api", "perfil", "1"] },
+            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Carlos\",\n    \"telefono\": \"3001112233\",\n    \"nivel\": \"avanzado\"\n}" }
+          }
+        },
+        {
+          "name": "Cambiar contraseña",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/perfil/1/password", "host": ["{{baseUrl}}"], "path": ["api", "perfil", "1", "password"] },
+            "body": { "mode": "raw", "raw": "{\n    \"contrasena_actual\": \"123456\",\n    \"contrasena_nueva\": \"nueva123\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Solicitudes",
+      "item": [
+        {
+          "name": "Listar solicitudes",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/solicitudes", "host": ["{{baseUrl}}"], "path": ["api", "solicitudes"] } }
+        },
+        {
+          "name": "Listar solicitudes por estado (pendiente)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/solicitudes?estado=pendiente", "host": ["{{baseUrl}}"], "path": ["api", "solicitudes"], "query": [ { "key": "estado", "value": "pendiente" } ] } }
+        },
+        {
+          "name": "Detalle de solicitud (id 1)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/solicitudes/1", "host": ["{{baseUrl}}"], "path": ["api", "solicitudes", "1"] } }
+        },
+        {
+          "name": "Historial (log) de solicitud",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/solicitudes/1/log", "host": ["{{baseUrl}}"], "path": ["api", "solicitudes", "1", "log"] } }
+        },
+        {
+          "name": "Solicitudes de un usuario (id 4)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/usuario/4/solicitudes", "host": ["{{baseUrl}}"], "path": ["api", "usuario", "4", "solicitudes"] } }
+        },
+        {
+          "name": "Crear solicitud",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/solicitudes", "host": ["{{baseUrl}}"], "path": ["api", "solicitudes"] },
+            "body": { "mode": "raw", "raw": "{\n    \"correo\": \"{{correoCliente}}\",\n    \"monto\": 3000000\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Flujo de solicitudes",
+      "item": [
+        {
+          "name": "Pasar a revisión",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/solicitudes/1/revision", "host": ["{{baseUrl}}"], "path": ["api", "admin", "solicitudes", "1", "revision"] },
+            "body": { "mode": "raw", "raw": "{\n    \"estado\": \"en_revision\"\n}" }
+          }
+        },
+        {
+          "name": "Aprobar solicitud",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/solicitudes/1/aprobar", "host": ["{{baseUrl}}"], "path": ["api", "admin", "solicitudes", "1", "aprobar"] },
+            "body": { "mode": "raw", "raw": "{\n    \"monto_aprobado\": 3000000,\n    \"tasa_interes\": 2.50,\n    \"plazo\": 12,\n    \"id_banco\": 2\n}" }
+          }
+        },
+        {
+          "name": "Rechazar solicitud",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/admin/solicitudes/1/rechazar?observaciones=Falta%20documentacion", "host": ["{{baseUrl}}"], "path": ["api", "admin", "solicitudes", "1", "rechazar"], "query": [ { "key": "observaciones", "value": "Falta documentacion" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Créditos",
+      "item": [
+        {
+          "name": "Listar créditos",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/creditos", "host": ["{{baseUrl}}"], "path": ["api", "creditos"] } }
+        },
+        {
+          "name": "Detalle de crédito (id 1)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/creditos/1", "host": ["{{baseUrl}}"], "path": ["api", "creditos", "1"] } }
+        },
+        {
+          "name": "Créditos de un usuario (id 4)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/creditos/usuario/4", "host": ["{{baseUrl}}"], "path": ["api", "creditos", "usuario", "4"] } }
+        },
+        {
+          "name": "Créditos activos de un usuario",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/creditos/usuario/4?activo=1", "host": ["{{baseUrl}}"], "path": ["api", "creditos", "usuario", "4"], "query": [ { "key": "activo", "value": "1" } ] } }
+        },
+        {
+          "name": "Pagos de un crédito (id 1)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/creditos/1/pagos", "host": ["{{baseUrl}}"], "path": ["api", "creditos", "1", "pagos"] } }
+        },
+        {
+          "name": "Crear crédito manual",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/creditos", "host": ["{{baseUrl}}"], "path": ["api", "admin", "creditos"] },
+            "body": { "mode": "raw", "raw": "{\n    \"id_solicitud\": 1,\n    \"monto_aprobado\": 5000000,\n    \"tasa_interes\": 2.50,\n    \"plazo\": 12,\n    \"cuotas_totales\": 12\n}" }
+          }
+        },
+        {
+          "name": "Actualizar crédito",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/creditos/1", "host": ["{{baseUrl}}"], "path": ["api", "admin", "creditos", "1"] },
+            "body": { "mode": "raw", "raw": "{\n    \"saldo_pendiente\": 4000000,\n    \"cuotas_pagadas\": 2\n}" }
+          }
+        },
+        {
+          "name": "Eliminar crédito",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/api/admin/creditos/1", "host": ["{{baseUrl}}"], "path": ["api", "admin", "creditos", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "Pagos",
+      "item": [
+        {
+          "name": "Listar pagos",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/pagos", "host": ["{{baseUrl}}"], "path": ["api", "pagos"] } }
+        },
+        {
+          "name": "Registrar pago",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/pagos", "host": ["{{baseUrl}}"], "path": ["api", "pagos"] },
+            "body": { "mode": "raw", "raw": "{\n    \"correo\": \"{{correoCliente}}\",\n    \"monto\": 250000,\n    \"id_metodo\": 1\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entidades bancarias",
+      "item": [
+        {
+          "name": "Listar entidades",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/bancos", "host": ["{{baseUrl}}"], "path": ["api", "bancos"] } }
+        },
+        {
+          "name": "Detalle de entidad (id 1)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/bancos/1", "host": ["{{baseUrl}}"], "path": ["api", "bancos", "1"] } }
+        },
+        {
+          "name": "Crear entidad",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/bancos", "host": ["{{baseUrl}}"], "path": ["api", "admin", "bancos"] },
+            "body": { "mode": "raw", "raw": "{\n    \"nombre_banco\": \"Banco Caja Social\",\n    \"respuesta\": \"pendiente\",\n    \"observaciones\": \"\"\n}" }
+          }
+        },
+        {
+          "name": "Actualizar entidad",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/bancos/1", "host": ["{{baseUrl}}"], "path": ["api", "admin", "bancos", "1"] },
+            "body": { "mode": "raw", "raw": "{\n    \"respuesta\": \"aprobado\",\n    \"observaciones\": \"Alianzas renovadas\"\n}" }
+          }
+        },
+        {
+          "name": "Eliminar entidad",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/api/admin/bancos/1", "host": ["{{baseUrl}}"], "path": ["api", "admin", "bancos", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "Notificaciones",
+      "item": [
+        {
+          "name": "Notificaciones de un usuario (id 4)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/notificaciones/4", "host": ["{{baseUrl}}"], "path": ["api", "notificaciones", "4"] } }
+        },
+        {
+          "name": "Marcar notificación como leída",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/notificaciones/1/leida", "host": ["{{baseUrl}}"], "path": ["api", "notificaciones", "1", "leida"] },
+            "body": { "mode": "raw", "raw": "{\n    \"leida\": 1\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Prueba virtual",
+      "item": [
+        {
+          "name": "Registrar prueba",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/prueba-virtual", "host": ["{{baseUrl}}"], "path": ["api", "prueba-virtual"] },
+            "body": { "mode": "raw", "raw": "{\n    \"id_usuario\": 4,\n    \"puntaje\": 80\n}" }
+          }
+        },
+        {
+          "name": "Historial de pruebas de un usuario",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/prueba-virtual/4", "host": ["{{baseUrl}}"], "path": ["api", "prueba-virtual", "4"] } }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Usuarios",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/admin/usuarios", "host": ["{{baseUrl}}"], "path": ["api", "admin", "usuarios"] } }
+        },
+        {
+          "name": "Cambiar rol de usuario",
+          "request": { "method": "PUT", "url": { "raw": "{{baseUrl}}/api/admin/usuarios/4/rol?rol=asesor", "host": ["{{baseUrl}}"], "path": ["api", "admin", "usuarios", "4", "rol"], "query": [ { "key": "rol", "value": "asesor" } ] } }
+        },
+        {
+          "name": "Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/api/admin/usuarios/4", "host": ["{{baseUrl}}"], "path": ["api", "admin", "usuarios", "4"] },
+            "body": { "mode": "raw", "raw": "{\n    \"rol\": \"cliente\",\n    \"nivel\": \"intermedio\",\n    \"activo\": 1\n}" }
+          }
+        },
+        {
+          "name": "Desactivar usuario",
+          "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/api/admin/usuarios/4", "host": ["{{baseUrl}}"], "path": ["api", "admin", "usuarios", "4"] } }
+        }
+      ]
+    },
+    {
+      "name": "Endpoints legacy (compatibilidad)",
+      "item": [
+        {
+          "name": "Registrar (viejo)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/registrar", "host": ["{{baseUrl}}"], "path": ["registrar"] },
+            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Ana\",\n    \"apellido\": \"Gomez\",\n    \"cedula\": \"1032500002\",\n    \"correo\": \"ana.gomez@email.com\",\n    \"contrasena\": \"123456\"\n}" }
+          }
+        },
+        {
+          "name": "Solicitar (viejo)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/solicitar", "host": ["{{baseUrl}}"], "path": ["solicitar"] },
+            "body": { "mode": "raw", "raw": "{\n    \"correo\": \"{{correoCliente}}\",\n    \"monto\": 2000000\n}" }
+          }
+        },
+        {
+          "name": "Solicitudes por correo (viejo)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/solicitudes/{{correoCliente}}", "host": ["{{baseUrl}}"], "path": ["solicitudes", "{{correoCliente}}"] } }
+        },
+        {
+          "name": "Crédito por correo (viejo)",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/credito/{{correoCliente}}", "host": ["{{baseUrl}}"], "path": ["credito", "{{correoCliente}}"] } }
+        },
+        {
+          "name": "Pagar (viejo)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/pagar", "host": ["{{baseUrl}}"], "path": ["pagar"] },
+            "body": { "mode": "raw", "raw": "{\n    \"correo\": \"{{correoCliente}}\",\n    \"monto\": 100000,\n    \"id_metodo\": 2\n}" }
+          }
+        }
+      ]
+    }
+  ]
+}
