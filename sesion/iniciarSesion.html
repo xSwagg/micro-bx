@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 460px; padding-top: 45px; padding-bottom: 60px;">
+        <div class="info-card">
+            <h3>Iniciar sesión</h3>
+            <div id="alertaLogin" class="alerta"></div>
+            <form id="formLogin">
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" required placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" required placeholder="******">
+                </div>
+                <button type="submit" class="btn btn-primario" style="width: 100%;">Ingresar</button>
+            </form>
+            <p style="margin-top: 14px; text-align: center;">
+                ¿No tienes cuenta? <a href="../sesion/registro.html" style="color: #0d5fa8;">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../sesion/iniciarSesion.js"></script>
+</body>
+</html>

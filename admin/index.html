@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px; padding-bottom: 50px;">
+        <h2 class="centrado">Panel de administración</h2>
+        <div id="alertaAdmin" class="alerta"></div>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="usuarios">Usuarios</button>
+                <button class="tab-btn" data-tab="solicitudes">Solicitudes</button>
+                <button class="tab-btn" data-tab="creditos">Créditos</button>
+                <button class="tab-btn" data-tab="bancos">Entidades</button>
+            </div>
+
+            <div class="tab-content active" id="tab-usuarios">
+                <div id="listaUsuarios" class="sin-datos">Cargando...</div>
+            </div>
+
+            <div class="tab-content" id="tab-solicitudes">
+                <div id="listaSolicitudes" class="sin-datos">Cargando...</div>
+            </div>
+
+            <div class="tab-content" id="tab-creditos">
+                <div id="listaCreditos" class="sin-datos">Cargando...</div>
+            </div>
+
+            <div class="tab-content" id="tab-bancos">
+                <div style="margin-bottom: 12px;">
+                    <button class="btn btn-verde" onclick="abrirNuevoBanco()">+ Nueva entidad</button>
+                </div>
+                <div id="listaBancos" class="sin-datos">Cargando...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: editar usuario -->
+    <div class="modal" id="modalUsuario">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalUsuario')">&times;</button>
+            <h3 id="tituloUsuario">Editar usuario</h3>
+            <form id="formUsuario">
+                <input type="hidden" id="usuarioId">
+                <input type="hidden" id="usuarioNombreCambiar" value="0">
+                <div class="form-group">
+                    <label for="uxNombre">Nombres</label>
+                    <input type="text" id="uxNombre">
+                </div>
+                <div class="form-group">
+                    <label for="uxApellido">Apellidos</label>
+                    <input type="text" id="uxApellido">
+                </div>
+                <div class="form-group">
+                    <label for="uxCorreo">Correo</label>
+                    <input type="email" id="uxCorreo">
+                </div>
+                <div class="form-group">
+                    <label for="uxCedula">Cédula</label>
+                    <input type="text" id="uxCedula">
+                </div>
+                <div class="form-group">
+                    <label for="uxTelefono">Teléfono</label>
+                    <input type="text" id="uxTelefono">
+                </div>
+                <div class="form-group">
+                    <label for="uxRol">Rol</label>
+                    <select id="uxRol">
+                        <option value="cliente">Cliente</option>
+                        <option value="asesor">Asesor</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="uxNivel">Nivel</label>
+                    <select id="uxNivel">
+                        <option value="basico">Básico</option>
+                        <option value="intermedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" id="uxActivo"> Usuario activo</label>
+                </div>
+                <div id="alertaUsuarioModal" class="alerta"></div>
+                <button type="submit" class="btn btn-primario" style="width: 100%;">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: banco (crear/editar) -->
+    <div class="modal" id="modalBanco">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal('modalBanco')">&times;</button>
+            <h3 id="tituloBanco">Nueva entidad</h3>
+            <form id="formBanco">
+                <input type="hidden" id="bancoId">
+                <div class="form-group">
+                    <label for="bancoNombre">Nombre *</label>
+                    <input type="text" id="bancoNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="bancoRespuesta">Respuesta</label>
+                    <select id="bancoRespuesta">
+                        <option value="pendiente">Pendiente</option>
+                        <option value="aprobado">Aprobado</option>
+                        <option value="rechazado">Rechazado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bancoObs">Observaciones</label>
+                    <textarea id="bancoObs" rows="3"></textarea>
+                </div>
+                <div id="alertaBancoModal" class="alerta"></div>
+                <button type="submit" class="btn btn-verde" style="width: 100%;">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../admin/admin.js"></script>
+</body>
+</html>

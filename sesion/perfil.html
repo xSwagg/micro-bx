@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil - MicrocreditosBX</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <div class="nav-links" id="navLinks"></div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px; padding-bottom: 50px;">
+        <div class="perfil-header" id="perfilHeader">
+            <div class="avatar">&#128100;</div>
+            <h1>Cargando...</h1>
+        </div>
+
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="solicitudes">Solicitudes</button>
+                <button class="tab-btn" data-tab="creditos">Créditos</button>
+                <button class="tab-btn" data-tab="notificaciones">Notificaciones</button>
+            </div>
+
+            <div class="tab-content active" id="tab-solicitudes">
+                <div id="listaSolicitudes" class="sin-datos">Cargando...</div>
+            </div>
+
+            <div class="tab-content" id="tab-creditos">
+                <div id="listaCreditos" class="sin-datos">Cargando...</div>
+            </div>
+
+            <div class="tab-content" id="tab-notificaciones">
+                <div id="listaNotificaciones" class="sin-datos">Cargando...</div>
+            </div>
+        </div>
+
+        <div class="info-card" id="pruebaVirtualCard" style="display: none;">
+            <h3>Prueba virtual</h3>
+            <p>Completa la prueba de educación financiera para habilitar nuevos créditos.</p>
+            <form id="formPrueba">
+                <div id="preguntasPrueba"></div>
+                <button type="submit" class="btn btn-info" style="margin-top: 8px;">Enviar prueba</button>
+            </form>
+            <div id="alertaPrueba" class="alerta"></div>
+        </div>
+
+        <div class="info-card">
+            <h3>Datos personales</h3>
+            <form id="formPerfil">
+                <div class="form-group">
+                    <label for="nombre">Nombres</label>
+                    <input type="text" id="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellidos</label>
+                    <input type="text" id="apellido">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="nivel">Nivel</label>
+                    <select id="nivel">
+                        <option value="basico">Básico</option>
+                        <option value="intermedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                    </select>
+                </div>
+                <div id="alertaPerfil" class="alerta"></div>
+                <button type="submit" class="btn btn-primario">Guardar cambios</button>
+            </form>
+        </div>
+
+        <div class="info-card">
+            <h3>Cambiar contraseña</h3>
+            <form id="formPassword">
+                <div class="form-group">
+                    <label for="pwActual">Contraseña actual</label>
+                    <input type="password" id="pwActual" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwNueva">Nueva contraseña</label>
+                    <input type="password" id="pwNueva" required minlength="6">
+                </div>
+                <div id="alertaPassword" class="alerta"></div>
+                <button type="submit" class="btn btn-verde">Cambiar contraseña</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="logo" href="../main/index.html">Microcreditos<span>BX</span></a>
+            <p>&copy; 2026 MicrocreditosBX</p>
+        </div>
+    </footer>
+
+    <script src="../main/comun.js"></script>
+    <script src="../sesion/perfil.js"></script>
+</body>
+</html>
